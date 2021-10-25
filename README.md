@@ -10,6 +10,10 @@ Clone the repository on your local machine.
 
 Navigate to project root directory.
 
+### `npm install`
+
+Install dependencies.
+
 ### `npm start`
 
 Runs the app in the development mode.\
