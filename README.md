@@ -2,7 +2,7 @@
 
 Add, edit, remove, and mark as completed todos.
 
-### `https://gitlab.com/jklosito/react-todo-app.git`
+### `git clone https://gitlab.com/jklosito/react-todo-app.git`
 
 Clone the repository on your local machine.
 
