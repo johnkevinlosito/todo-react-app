@@ -1,17 +1,34 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useSelector, useDispatch } from 'react-redux'
+import { saveTodo, updateTodo } from '../redux/todoSlice';
+import { cancelForm } from '../redux/todoFormSlice';
 
-const TodoForm = ({ onSave, editItem, onUpdate }) => {
+const TodoForm = () => {
+  const { itemToEdit } = useSelector(state => state.todoForm)
+  const dispatch = useDispatch()
+
   const [title, setTitle] = useState('');
   const [completed, setCompleted] = useState(false);
 
+  const saveTodoHandler = (todo) => {
+    dispatch(saveTodo(todo))
+    dispatch(cancelForm());
+  }
+
+  const updateTodoHandler = (item) => {
+    dispatch(updateTodo(item))
+    dispatch(cancelForm());
+  }
+
+
   useEffect(() => {
-    if (editItem) {
-      setTitle(editItem.title)
-      setCompleted(editItem.completed)
+    if (itemToEdit) {
+      setTitle(itemToEdit.title)
+      setCompleted(itemToEdit.completed)
     }
-  }, [editItem])
+  }, [itemToEdit])
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -19,22 +36,22 @@ const TodoForm = ({ onSave, editItem, onUpdate }) => {
       alert('Please add todo')
       return;
     }
-    if (!editItem) {
+    if (!itemToEdit) {
       const todo = {
         id: uuidv4(),
         title,
         completed
       }
-      onSave(todo)
+      saveTodoHandler(todo)
       setTitle('')
     }
-    if (editItem) {
+    if (itemToEdit) {
       const todo = {
-        id: editItem.id,
+        id: itemToEdit.id,
         title,
         completed
       }
-      onUpdate(todo)
+      updateTodoHandler(todo)
       setTitle('')
     }
 
