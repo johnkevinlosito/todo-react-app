@@ -3,7 +3,7 @@
 Add, edit, remove, and mark as completed todos.
 Created using create-react-app, migrated to Next.JS, and used redux toolkit for state management
 
-### `git clone https://gitlab.com/jklosito/react-todo-app.git`
+### `git clone https://github.com/johnkevinlosito/todo-react-app`
 
 Clone the repository on your local machine.
 
